@@ -1,0 +1,15 @@
+public class Main {
+    public static void main(String[] args) {
+
+        EventoUniversitario tallerPreparacionFinales = new EventoUniversitario("12532ded54", "Taller de preparacion de finales", true, 5000);
+        tallerPreparacionFinales.mostarDatos();
+
+        EventoUniversitario charlaDeDecano = new EventoUniversitario("1512565def5", "Charla del decano", false, 1500);
+        charlaDeDecano.mostarDatos();
+
+        EventoUniversitario copiaDelTaller = new EventoUniversitario(tallerPreparacionFinales);
+        copiaDelTaller.mostarDatos();
+
+        System.out.println("Cantidad de eventos disponible: "+ EventoUniversitario.getCantidadEvento());
+    }
+}
