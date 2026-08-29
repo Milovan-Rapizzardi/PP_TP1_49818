@@ -7,6 +7,7 @@ public class Main {
         EventoUniversitario charlaDeDecano = new EventoUniversitario("1512565def5", "Charla del decano", false, 1500);
         charlaDeDecano.mostarDatos();
 
+
         EventoUniversitario copiaDelTaller = new EventoUniversitario(tallerPreparacionFinales);
         copiaDelTaller.mostarDatos();
 
