@@ -7,7 +7,8 @@ public class EventoUniversitario {
     private double costoBase;
     private boolean gratuito;
     private static int cantidadEvento;
-    public List<Actividad> actividades;
+    private List<Actividad> actividades;
+    private Sala sala;
 
     public EventoUniversitario(String id, String titulo, boolean gratuito, double costoBase) {
         this.id = id;
@@ -18,6 +19,7 @@ public class EventoUniversitario {
         }else this.costoBase = costoBase;
         cantidadEvento++;
         this.actividades = new ArrayList<>();
+
     }
 
     public EventoUniversitario (EventoUniversitario otroEvento){
@@ -27,25 +29,36 @@ public class EventoUniversitario {
         this.gratuito = otroEvento.gratuito;
         cantidadEvento++;
         this.actividades = new ArrayList<>();
+
     }
+
+    public void crearActividad (int id, String titulo, int cupo){
+        Actividad nuevaActividad = new Actividad(id, titulo, cupo);
+        this.actividades.add(nuevaActividad);
+
+    }
+
 //Revisar el contexto de este evento
     /*public double calcaularCostoEstimado (double precio){
         return precio = costoBase + cantidadEvento;
     }*/
 
-    /*public void asignarSala (Sala sala){
-
-    }*/
-
-    public void crearActividad (int id, String titulo, int cupo){
-        Actividad actividad1 = new Actividad(2154,"1ra actividad",60);
-        this.actividades.add(actividad1);
+    public void asignarSala (Sala sala){
+        this.sala = sala;
     }
+
+
 
    public void mostarDatos (){
         System.out.println("Id: "+ id
                 + "\nTitulo: " + titulo
-                + "\nPrecio de ingreso: " + costoBase + "\n");
+                + "\nPrecio de ingreso: " + costoBase+"\n");
+
+   }
+
+   public void mostrarSala(){
+       System.out.println("Sala del evento: " + sala.getNombre()+
+               "\n-----------------------------------\n" );
    }
 
     public static int getCantidadEvento() {
