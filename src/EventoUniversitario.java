@@ -2,13 +2,14 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class EventoUniversitario {
-    public final String id;
+    private final String id;
     private String titulo;
     private double costoBase;
     private boolean gratuito;
     private static int cantidadEvento;
     private List<Actividad> actividades;
     private Sala sala;
+
 
     public EventoUniversitario(String id, String titulo, boolean gratuito, double costoBase) {
         this.id = id;
@@ -38,9 +39,9 @@ public class EventoUniversitario {
 
     }
 
-//Revisar el contexto de este evento
+//No sa que pide calcular todavia
     /*public double calcaularCostoEstimado (double precio){
-        return precio = costoBase + cantidadEvento;
+
     }*/
 
     public void asignarSala (Sala sala){
@@ -61,7 +62,7 @@ public class EventoUniversitario {
                "\n-----------------------------------\n" );
    }
 
-    public static int getCantidadEvento() {
+    public static int getCantidadEventos() {
         return cantidadEvento;
     }
 
