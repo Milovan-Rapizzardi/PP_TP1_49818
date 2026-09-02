@@ -33,8 +33,17 @@ public class EventoUniversitario {
 
     }
 
-    public void crearActividad (int id, String titulo, int cupo){
-            Actividad nuevaActividad = new Actividad(id, titulo, cupo);
+    public void crearActividad (String tipo, int id, String titulo, int cupo, String disertante, boolean requiereNotebook){
+            Actividad nuevaActividad;
+
+        if (tipo.equalsIgnoreCase("Charla")) {
+            nuevaActividad = new Charla(id, titulo, cupo, disertante);
+        } else if (tipo.equalsIgnoreCase("Taller")) {
+            nuevaActividad = new Taller(id, titulo, cupo, requiereNotebook);
+        } else {
+            System.out.println("Tipo de actividad no válido: " + tipo);
+            return;
+        }
             this.actividades.add(nuevaActividad);
     }
 
@@ -48,10 +57,18 @@ public class EventoUniversitario {
         return null;
     }
 
-//No sa que pide calcular todavia
-    /*public double calcaularCostoEstimado (double precio){
+    public double calcularCostoEstimado() {
+        if (this.gratuito) {
+            return 0;
+        }
 
-    }*/
+        double costoActividades = 0;
+        for (Actividad a : actividades) {
+            costoActividades += a.calcularCostoMateriales();
+        }
+
+        return (this.costoBase + costoActividades) * 1.21;
+    }
 
     public void asignarSala (Sala sala){
         this.sala = sala;
@@ -63,17 +80,17 @@ public class EventoUniversitario {
         System.out.println("Id: " + id);
         System.out.println("Titulo: " + titulo);
         System.out.println("Precio de ingreso: " + costoBase);
+        System.out.println("Costo estimado: $" + calcularCostoEstimado());
 
-//Muestra la sala asignada
         if (sala != null) {
             System.out.println("Sala: " + sala.getNombre());
         } else {
-            System.out.println("Sin sala asignada");
+            System.out.println("Sala: (sin asignar)");
         }
 
-//Muestra la actividad
         System.out.println("\nActividades:");
         for (Actividad a : actividades) {
+            a.mostrarIdentificacion();
             a.mostrarInscripcion();
         }
         System.out.println("===================================\n");

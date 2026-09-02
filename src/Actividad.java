@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Actividad {
+public abstract class Actividad {
     private int id;
     private String titulo;
     private int cupoMaximo;
@@ -35,11 +35,21 @@ public class Actividad {
 
         System.out.println("Inscripciones:");
         for (Inscripcion i : inscripciones) {
-            i.mostrarDatosAlumno(); // ← cada inscripción también se muestra a sí misma
+            i.mostrarDatosAlumno();
         }
     }
 
     public int getId() {
         return id;
     }
+
+    public final void mostrarIdentificacion() {
+        System.out.println("Id: " + id + " - Titulo: " + titulo + " - Tipo: " + getTipo());
+    }
+
+//Metodos abstractos
+
+    public abstract double calcularCostoMateriales();
+    public abstract String getTipo();
+
 }
