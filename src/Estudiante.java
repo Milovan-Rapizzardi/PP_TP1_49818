@@ -7,5 +7,7 @@ public class Estudiante {
         this.nombre = nombre;
     }
 
-
+    public String getNombre() {
+        return nombre;
+    }
 }

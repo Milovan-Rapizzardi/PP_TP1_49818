@@ -6,7 +6,7 @@ public class EventoUniversitario {
     private String titulo;
     private double costoBase;
     private boolean gratuito;
-    private static int cantidadEvento;
+    private static int cantidadEventos;
     private List<Actividad> actividades;
     private Sala sala;
 
@@ -18,7 +18,7 @@ public class EventoUniversitario {
         if(gratuito){
             this.costoBase = 0;
         }else this.costoBase = costoBase;
-        cantidadEvento++;
+        cantidadEventos++;
         this.actividades = new ArrayList<>();
 
     }
@@ -28,15 +28,24 @@ public class EventoUniversitario {
         this.titulo = otroEvento.titulo;
         this.costoBase = otroEvento.costoBase;
         this.gratuito = otroEvento.gratuito;
-        cantidadEvento++;
+        cantidadEventos++;
         this.actividades = new ArrayList<>();
 
     }
 
     public void crearActividad (int id, String titulo, int cupo){
-        Actividad nuevaActividad = new Actividad(id, titulo, cupo);
-        this.actividades.add(nuevaActividad);
+            Actividad nuevaActividad = new Actividad(id, titulo, cupo);
+            this.actividades.add(nuevaActividad);
+    }
 
+//Metodo para vincular estudiantes con las actividades creadas
+    public Actividad buscarActividadId (int id){
+        for(Actividad a : actividades){
+            if(a.getId() == id){
+                return a;
+            }
+        }
+        return null;
     }
 
 //No sa que pide calcular todavia
@@ -49,21 +58,29 @@ public class EventoUniversitario {
     }
 
 
+    public void mostarDatos() {
+        System.out.println("===================================");
+        System.out.println("Id: " + id);
+        System.out.println("Titulo: " + titulo);
+        System.out.println("Precio de ingreso: " + costoBase);
 
-   public void mostarDatos (){
-        System.out.println("Id: "+ id
-                + "\nTitulo: " + titulo
-                + "\nPrecio de ingreso: " + costoBase+"\n");
+//Muestra la sala asignada
+        if (sala != null) {
+            System.out.println("Sala: " + sala.getNombre());
+        } else {
+            System.out.println("Sin sala asignada");
+        }
 
-   }
-
-   public void mostrarSala(){
-       System.out.println("Sala del evento: " + sala.getNombre()+
-               "\n-----------------------------------\n" );
-   }
+//Muestra la actividad
+        System.out.println("\nActividades:");
+        for (Actividad a : actividades) {
+            a.mostrarInscripcion();
+        }
+        System.out.println("===================================\n");
+    }
 
     public static int getCantidadEventos() {
-        return cantidadEvento;
+        return cantidadEventos;
     }
 
 }

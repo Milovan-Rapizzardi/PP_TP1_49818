@@ -9,6 +9,12 @@ public class Inscripcion {
     public Inscripcion(Estudiante estudiante) {
         this.estudiante = estudiante;
         this.fecha = LocalDate.now();
-        this.estado = estado;
+        this.estado = "ACTIVO";
+    }
+
+    public void mostrarDatosAlumno(){
+        System.out.println("Estudiante: " + estudiante.getNombre()
+                + " - Fecha: " + fecha
+                + " - Estado: " + estado);
     }
 }

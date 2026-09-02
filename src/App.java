@@ -1,31 +1,37 @@
 public class App {
     public static void main(String[] args) {
 
-        Estudiante juan = new Estudiante("48525","Juan");
-        EventoUniversitario tallerPreparacionFinales = new EventoUniversitario("12532ded54", "Taller de preparacion de finales", true, 5000);
-        Actividad metodoCornell = new Actividad(5156,"Ayuda Metodo Cornel",90);
+        Estudiante Juan = new Estudiante("48714","Juan");
+        Estudiante Marcelo = new Estudiante("50895","Marcelo");
+        Estudiante Raul = new Estudiante("35982","Raul");
 
-        //tallerPreparacionFinales.mostarDatos();
-        //tallerPreparacionFinales.crearActividad(25155,"Primer Actividad",150);
+//Evento de feria de estudio, posee 2 actividades.
 
+        EventoUniversitario feriaUniversitaria = new EventoUniversitario("25185dew4","Feria Universitaria",true,5000);
 
-        Sala salonPrincipal = new Sala(2515,"Salon Principal");
-        tallerPreparacionFinales.asignarSala(salonPrincipal);
-        tallerPreparacionFinales.mostrarSala();
+        Sala auditorio = new Sala(4852,"Auditorio");
+        feriaUniversitaria.asignarSala(auditorio);
 
-        EventoUniversitario charlaDeDecano = new EventoUniversitario("1512565def5", "Charla del decano", false, 1500);
-        charlaDeDecano.mostarDatos();
+        feriaUniversitaria.crearActividad(4565,"Taller de Matematicas",120);
+        feriaUniversitaria.crearActividad(6959,"Taller de Ingles",90);
 
+        Actividad tallerMates = feriaUniversitaria.buscarActividadId(4565);
+        Actividad tallerIngles = feriaUniversitaria.buscarActividadId(6959);
 
-        EventoUniversitario copiaDelTaller = new EventoUniversitario(tallerPreparacionFinales);
-        copiaDelTaller.mostarDatos();
-        copiaDelTaller.asignarSala(salonPrincipal);
-        copiaDelTaller.mostrarSala();
+        tallerMates.inscribir(Juan);
+        tallerMates.inscribir(Raul);
+        tallerIngles.inscribir(Marcelo);
 
+//Constructor de copia y cantidad de eventos
+        EventoUniversitario segundaFeriauniversitaria = new EventoUniversitario(feriaUniversitaria);
 
-        System.out.println("Cantidad de eventos disponible: "+ EventoUniversitario.getCantidadEventos());
+        System.out.println("///////////////////////\n"+
+                "Cantidad de Eventos: "+ EventoUniversitario.getCantidadEventos());
 
-        Estudiante primerEstudiante = new Estudiante("49818", "Milovan");
+//Mostrar resumen
+
+        feriaUniversitaria.mostarDatos();
+        segundaFeriauniversitaria.mostarDatos();
 
 
     }

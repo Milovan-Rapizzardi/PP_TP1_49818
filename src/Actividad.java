@@ -5,7 +5,7 @@ public class Actividad {
     private int id;
     private String titulo;
     private int cupoMaximo;
-    public static final int CUPO_MINIMO = 5;
+    public static final int CUPO_MINIMO = 1;
     private List<Inscripcion> inscripciones;
 
 
@@ -27,11 +27,19 @@ public class Actividad {
     }
 
     public void mostrarInscripcion(){
-        System.out.println("Id de la actividad: "+ id
-        +  "\nNombre: "+ titulo
-        + "\nCupo maximo: "+ cupoMaximo
-        +"\nCupo minimo: "+ CUPO_MINIMO);
+        System.out.println("-----------------------------------");
+        System.out.println("Id de la actividad: " + id);
+        System.out.println("Nombre: " + titulo);
+        System.out.println("Cupo maximo: " + cupoMaximo);
+        System.out.println("Cupo minimo: " + CUPO_MINIMO);
+
+        System.out.println("Inscripciones:");
+        for (Inscripcion i : inscripciones) {
+            i.mostrarDatosAlumno(); // ← cada inscripción también se muestra a sí misma
+        }
     }
 
-
+    public int getId() {
+        return id;
+    }
 }
